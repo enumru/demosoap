@@ -54,4 +54,25 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://signalr2.enum.ru/js/signalr.min.js"></script>
+    <script>
+        $(function () {
+            var sessionId = '@ViewBag.SessionId';
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl('https://signalr2.enum.ru/autoResponseHub?sessionId=' + sessionId, {
+                    skipNegotiation: true,
+                    transport: signalR.HttpTransportType.WebSockets
+                })
+                .build();
+            connection.on('response', function (response) {
+                if ($.trim(response) !== '') {
+                    $('input#Response').focus();
+                    $('input#Response').val(response);
+                    $('form').submit();
+                }
+            });
+            connection.start();
+        });
+    </script>
 }

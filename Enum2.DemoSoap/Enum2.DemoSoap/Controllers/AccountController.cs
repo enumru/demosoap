@@ -47,14 +47,16 @@ namespace Enum2.DemoSoap.Controllers
                 var crc = Sha256(_consumerSecret + email);
 
                 var client = new SoapSoapClient();
-                var result = client.GetChallenge(_consumerId, email, userIp, crc);
+                var result = client.GetChallenge2(_consumerId, email, userIp, crc);
 
                 if (result.ErrorCode == 0)
                 {
                     Session["challenge"] = result.Challenge;
                     Session["qrUrl"] = result.QrUrl;
+                    Session["sessionId"] = result.SessionId;
                     return RedirectToAction("Login2", new {ReturnUrl = returnUrl});
                 }
+                Session.Remove("sessionId");
 
                 if (result.ErrorCode == 301)
                     return Redirect(AskPermissionUrl(email, returnUrl));
@@ -99,6 +101,7 @@ namespace Enum2.DemoSoap.Controllers
             var respErr = TempData["responseError"] as string;
             if (respErr != null) ModelState.AddModelError("Response", respErr);
 
+            ViewBag.SessionId = Session["sessionId"];
             return View("Login2", model);
         }
 
@@ -145,6 +148,7 @@ namespace Enum2.DemoSoap.Controllers
             if (string.IsNullOrWhiteSpace(model.Email))
                 return RedirectToAction("Login", new {ReturnUrl = returnUrl});
 
+            ViewBag.SessionId = Session["sessionId"];
             return View("Login2", model);
         }
 
