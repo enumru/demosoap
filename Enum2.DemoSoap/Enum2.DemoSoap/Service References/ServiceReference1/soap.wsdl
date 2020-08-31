@@ -26,6 +26,31 @@
           <s:element minOccurs="0" maxOccurs="1" name="QrUrl" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetChallenge2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consumerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="crc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChallenge2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChallenge2Result" type="tns:GetChallenge2Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetChallenge2Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Challenge" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QrUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="CheckUserAnswer">
         <s:complexType>
           <s:sequence>
@@ -69,6 +94,12 @@
   <wsdl:message name="GetChallengeSoapOut">
     <wsdl:part name="parameters" element="tns:GetChallengeResponse" />
   </wsdl:message>
+  <wsdl:message name="GetChallenge2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetChallenge2" />
+  </wsdl:message>
+  <wsdl:message name="GetChallenge2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetChallenge2Response" />
+  </wsdl:message>
   <wsdl:message name="CheckUserAnswerSoapIn">
     <wsdl:part name="parameters" element="tns:CheckUserAnswer" />
   </wsdl:message>
@@ -93,6 +124,17 @@ User is redirected back to redirectUrl with allow=1 or deny=1 query parameter.</
       <wsdl:input message="tns:GetChallengeSoapIn" />
       <wsdl:output message="tns:GetChallengeSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetChallenge2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Question Number with Auto Response Session Id&lt;br&gt;
+consumerId - client ID from project page https://enum.ru/Account/Consumers&lt;br&gt;
+if ErrorCode = 301 user must be redirected to&lt;br&gt;
+https://auth.enum.ru/permission/ask?consumerId={consumerId}&amp;email={email}&amp;redirectUrl={redirectUrl}&amp;nonce={nonce}&lt;br&gt;
+host part of the redirectUrl must be equal to projects redirectUrl&lt;br&gt;
+nonce is optional, passed back if present.&lt;br&gt;
+User is redirected back to redirectUrl with allow=1 or deny=1 query parameter.</wsdl:documentation>
+      <wsdl:input message="tns:GetChallenge2SoapIn" />
+      <wsdl:output message="tns:GetChallenge2SoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="CheckUserAnswer">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check Answer Number&lt;br&gt;
 returns 0 if success.</wsdl:documentation>
@@ -110,6 +152,15 @@ lang = ru|en</wsdl:documentation>
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetChallenge">
       <soap:operation soapAction="http://tempuri.org/GetChallenge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChallenge2">
+      <soap:operation soapAction="http://tempuri.org/GetChallenge2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -140,6 +191,15 @@ lang = ru|en</wsdl:documentation>
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetChallenge">
       <soap12:operation soapAction="http://tempuri.org/GetChallenge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChallenge2">
+      <soap12:operation soapAction="http://tempuri.org/GetChallenge2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
