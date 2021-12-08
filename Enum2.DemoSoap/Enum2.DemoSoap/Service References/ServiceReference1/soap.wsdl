@@ -115,9 +115,9 @@
   <wsdl:portType name="SoapSoap">
     <wsdl:operation name="GetChallenge">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Question Number&lt;br&gt;
-consumerId - client ID from project page https://enum.ru/Account/Consumers&lt;br&gt;
+consumerId - client ID from project page https://e-num.com/Account/Consumers&lt;br&gt;
 if ErrorCode = 301 user must be redirected to&lt;br&gt;
-https://auth.enum.ru/permission/ask?consumerId={consumerId}&amp;email={email}&amp;redirectUrl={redirectUrl}&amp;nonce={nonce}&lt;br&gt;
+https://auth.e-num.com/permission/ask?consumerId={consumerId}&amp;email={email}&amp;redirectUrl={redirectUrl}&amp;nonce={nonce}&lt;br&gt;
 host part of the redirectUrl must be equal to projects redirectUrl&lt;br&gt;
 nonce is optional, passed back if present.&lt;br&gt;
 User is redirected back to redirectUrl with allow=1 or deny=1 query parameter.</wsdl:documentation>
@@ -126,9 +126,9 @@ User is redirected back to redirectUrl with allow=1 or deny=1 query parameter.</
     </wsdl:operation>
     <wsdl:operation name="GetChallenge2">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Question Number with Auto Response Session Id&lt;br&gt;
-consumerId - client ID from project page https://enum.ru/Account/Consumers&lt;br&gt;
+consumerId - client ID from project page https://e-num.com/Account/Consumers&lt;br&gt;
 if ErrorCode = 301 user must be redirected to&lt;br&gt;
-https://auth.enum.ru/permission/ask?consumerId={consumerId}&amp;email={email}&amp;redirectUrl={redirectUrl}&amp;nonce={nonce}&lt;br&gt;
+https://auth.e-num.com/permission/ask?consumerId={consumerId}&amp;email={email}&amp;redirectUrl={redirectUrl}&amp;nonce={nonce}&lt;br&gt;
 host part of the redirectUrl must be equal to projects redirectUrl&lt;br&gt;
 nonce is optional, passed back if present.&lt;br&gt;
 User is redirected back to redirectUrl with allow=1 or deny=1 query parameter.</wsdl:documentation>
@@ -228,10 +228,10 @@ lang = ru|en</wsdl:documentation>
   </wsdl:binding>
   <wsdl:service name="Soap">
     <wsdl:port name="SoapSoap" binding="tns:SoapSoap">
-      <soap:address location="http://service.enum.ru/soap.asmx" />
+      <soap:address location="http://service.e-num.com/soap.asmx" />
     </wsdl:port>
     <wsdl:port name="SoapSoap12" binding="tns:SoapSoap12">
-      <soap12:address location="http://service.enum.ru/soap.asmx" />
+      <soap12:address location="http://service.e-num.com/soap.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

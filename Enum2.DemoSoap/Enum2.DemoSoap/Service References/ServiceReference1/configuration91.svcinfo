@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="SoapSoap" contract="ServiceReference1.SoapSoap" bindingType="basicHttpBinding" address="http://service.enum.ru/soap.asmx" bindingConfiguration="SoapSoap">
+    <endpoint name="SoapSoap" contract="ServiceReference1.SoapSoap" bindingType="basicHttpBinding" address="http://service.e-num.com/soap.asmx" bindingConfiguration="SoapSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://service.enum.ru/soap.asmx</serializedValue>
+          <serializedValue>http://service.e-num.com/soap.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

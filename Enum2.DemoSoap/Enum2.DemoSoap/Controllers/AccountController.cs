@@ -13,7 +13,7 @@ namespace Enum2.DemoSoap.Controllers
 {
     public class AccountController : Controller
     {
-        private const string AuthServerBaseUrl = "https://auth.enum.ru";
+        private const string AuthServerBaseUrl = "https://auth.e-num.com";
         private readonly string _baseUrl;
         private readonly string _consumerId;
         private readonly string _consumerSecret;
